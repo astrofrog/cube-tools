@@ -1,6 +1,9 @@
 # AppVeyor.com is a Continuous Integration service to build and run tests under
 # Windows
 
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 environment:
 
   global:
@@ -27,9 +30,6 @@ environment:
 
       - PYTHON_VERSION: "3.5"
         ASTROPY_VERSION: "3.0.1"
-
-      - PYTHON_VERSION: "3.6"
-        ASTROPY_VERSION: "stable"
 
 platform:
     -x64
